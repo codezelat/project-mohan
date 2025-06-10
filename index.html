@@ -193,6 +193,36 @@
         box-shadow: 0 25px 50px rgba(139, 92, 246, 0.25);
       }
 
+      /* Mobile-specific styles */
+      @media (max-width: 768px) {
+        .mobile-vertical {
+          flex-direction: column !important;
+          width: 100vw !important;
+          height: auto !important;
+          transform: none !important;
+          transition: none !important;
+        }
+
+        .mobile-vertical section {
+          width: 100vw !important;
+          height: 100vh !important;
+          min-height: 100vh;
+        }
+
+        .scroll-indicator {
+          display: none;
+        }
+
+        body {
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+
+        .card-hover:hover {
+          transform: none;
+          box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+        }
+      }
       /* Progress indicator */
       .progress-dot {
         transition: all 0.3s ease;
@@ -233,7 +263,9 @@
       };
     </script>
   </head>
-  <body class="bg-slate-900 text-slate-200 overflow-hidden font-inter">
+  <body
+    class="bg-slate-900 text-slate-200 overflow-hidden md:overflow-hidden font-inter"
+  >
     <!-- Progress Indicator -->
     <div class="scroll-indicator">
       <div class="flex flex-col space-y-3">
@@ -289,7 +321,7 @@
 
     <main
       id="slider-container"
-      class="flex w-[1100vw] h-screen transition-transform duration-1000 relative z-10"
+      class="flex w-[1100vw] h-screen transition-transform duration-1000 relative z-10 md:flex-row flex-col md:w-[1100vw] w-screen md:h-screen h-auto"
       style="transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1)"
     >
       <!-- Slide 1: Hero -->
@@ -879,6 +911,51 @@
       let currentSlide = 0;
       const totalSlides = 10;
       let isThrottled = false;
+      let isMobile = window.innerWidth <= 768;
+
+      // Check if mobile on resize
+      window.addEventListener("resize", () => {
+        const wasMobile = isMobile;
+        isMobile = window.innerWidth <= 768;
+
+        if (wasMobile !== isMobile) {
+          setupLayout();
+        }
+      });
+
+      // Setup layout based on device
+      function setupLayout() {
+        if (isMobile) {
+          slider.classList.add("mobile-vertical");
+          slider.style.transform = "none";
+          document.body.style.overflow = "auto";
+          document.body.style.overflowX = "hidden";
+
+          // Disable horizontal scrolling functionality
+          window.removeEventListener("wheel", handleScroll);
+          window.removeEventListener("keydown", handleKeyPress);
+
+          // Hide progress dots on mobile
+          progressDots.forEach((dot) => {
+            dot.style.display = "none";
+          });
+        } else {
+          slider.classList.remove("mobile-vertical");
+          document.body.style.overflow = "hidden";
+
+          // Enable horizontal scrolling functionality
+          window.addEventListener("wheel", handleScroll, { passive: true });
+          window.addEventListener("keydown", handleKeyPress);
+
+          // Show progress dots on desktop
+          progressDots.forEach((dot) => {
+            dot.style.display = "block";
+          });
+
+          // Reset to current slide position
+          slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+        }
+      }
 
       // Create floating particles
       function createParticles() {
@@ -895,6 +972,8 @@
 
       // Update progress indicator
       function updateProgress() {
+        if (isMobile) return; // Don't update progress on mobile
+
         progressDots.forEach((dot, index) => {
           if (index === currentSlide) {
             dot.classList.add("active");
@@ -904,9 +983,9 @@
         });
       }
 
-      // Handle scroll with improved smoothness
+      // Handle scroll with improved smoothness (desktop only)
       function handleScroll(event) {
-        if (isThrottled) return;
+        if (isMobile || isThrottled) return;
         isThrottled = true;
         setTimeout(() => {
           isThrottled = false;
@@ -924,8 +1003,10 @@
         updateProgress();
       }
 
-      // Handle keyboard navigation
+      // Handle keyboard navigation (desktop only)
       function handleKeyPress(event) {
+        if (isMobile) return;
+
         if (event.key === "ArrowRight" || event.key === " ") {
           event.preventDefault();
           if (currentSlide < totalSlides - 1) {
@@ -943,44 +1024,41 @@
         }
       }
 
-      // Handle progress dot clicks
+      // Handle progress dot clicks (desktop only)
       progressDots.forEach((dot, index) => {
         dot.addEventListener("click", () => {
+          if (isMobile) return;
           currentSlide = index;
           slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
           updateProgress();
         });
       });
 
-      // Initialize
-      window.addEventListener("wheel", handleScroll, { passive: true });
-      window.addEventListener("keydown", handleKeyPress);
-      createParticles();
-      updateProgress();
-
-      // Add touch/swipe support for mobile
+      // Touch/swipe support (desktop only - mobile uses native scroll)
       let touchStartX = 0;
       let touchEndX = 0;
 
       slider.addEventListener("touchstart", (e) => {
+        if (isMobile) return;
         touchStartX = e.changedTouches[0].screenX;
       });
 
       slider.addEventListener("touchend", (e) => {
+        if (isMobile) return;
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
       });
 
       function handleSwipe() {
+        if (isMobile) return;
+
         const swipeThreshold = 50;
         const diff = touchStartX - touchEndX;
 
         if (Math.abs(diff) > swipeThreshold) {
           if (diff > 0 && currentSlide < totalSlides - 1) {
-            // Swipe left - go to next slide
             currentSlide++;
           } else if (diff < 0 && currentSlide > 0) {
-            // Swipe right - go to previous slide
             currentSlide--;
           }
           slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
@@ -1002,6 +1080,11 @@
           }
         });
       }, observerOptions);
+
+      // Initialize
+      createParticles();
+      setupLayout();
+      updateProgress();
 
       // Observe all animated elements
       document.querySelectorAll(".card-hover, .glass").forEach((el) => {
