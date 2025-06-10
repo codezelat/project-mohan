@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Proposal: Reimagining Mohan Raj Madawala</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom scrollbar for a modern look */
+      body::-webkit-scrollbar {
+        display: none;
+      } /* Hide scrollbar for Chrome, Safari and Opera */
+      body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      } /* Hide scrollbar for IE, Edge and Firefox */
+
+      /* Defining custom animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          box-shadow: 0 0 15px rgba(167, 139, 250, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(167, 139, 250, 0.8);
+        }
+      }
+      .animate-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+      }
+    </style>
+    <script>
+      // Customizing Tailwind CSS with our theme and animations
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              "fade-in": "fadeIn 1s ease-out forwards",
+              "pulse-glow": "pulse-glow 4s infinite ease-in-out",
+            },
+            keyframes: {
+              fadeIn: {
+                from: { opacity: 0, transform: "translateY(20px)" },
+                to: { opacity: 1, transform: "translateY(0)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-900 text-slate-200 overflow-hidden">
+    <main
+      id="slider-container"
+      class="flex w-[1000vw] h-screen transition-transform duration-1000"
+      style="transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1)"
+    >
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border bg-cover bg-center"
+        style="background-image: url('./image_fx.jpg')"
+      >
+        <div
+          class="w-full max-w-4xl text-center bg-black/60 backdrop-blur-md p-10 rounded-2xl border border-white/10 animate-fade-in"
+        >
+          <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tight">
+            Who is Mohan?
+          </h1>
+          <h3 class="text-lg md:text-2xl text-slate-300 mt-4 font-light">
+            A project to reimagine Sri Lankan literature for the digital age.
+          </h3>
+          <p class="text-violet-300 mt-6">
+            Fusing magic realism with artificial intelligence to create a
+            transcendent literary icon for CIBF 2025.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border bg-gradient-to-br from-gray-900 to-slate-800"
+      >
+        <div class="w-full max-w-4xl animate-fade-in">
+          <h2
+            class="text-3xl md:text-5xl font-bold text-center text-violet-400 mb-10"
+          >
+            A New Cultural Economy Awaits
+          </h2>
+          <div class="grid md:grid-cols-2 gap-8 text-lg">
+            <div class="bg-slate-800/50 p-6 rounded-xl border border-white/10">
+              <h4 class="font-semibold text-white text-xl mb-2">
+                Digitally-Driven Audiences
+              </h4>
+              <p class="text-slate-300">
+                Gen Z & Millennials crave novel, visual, and shareable
+                experiences. Traditional book marketing doesn't reach them.
+              </p>
+            </div>
+            <div class="bg-slate-800/50 p-6 rounded-xl border border-white/10">
+              <h4 class="font-semibold text-white text-xl mb-2">
+                The Next Wave
+              </h4>
+              <p class="text-slate-300">
+                Gen Alpha, a young and curious generation, is captivated by
+                interactive and gamified content like chatbots and AR.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border"
+      >
+        <div class="w-full max-w-4xl text-center animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold text-violet-400 mb-6">
+            Legacy Meets Innovation
+          </h2>
+          <p class="text-xl md:text-2xl text-slate-200 leading-relaxed">
+            Our solution is to position Mohan Madawala as the
+            <strong
+              >first author in Sri Lanka to fuse serious literature with
+              cutting-edge, tech-driven engagement</strong
+            >.
+          </p>
+          <p class="mt-4 text-lg text-slate-400">
+            We will make literature a dynamic, must-have cultural experience for
+            a new generation.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border bg-gradient-to-tr from-gray-900 to-purple-900/40"
+      >
+        <div class="w-full max-w-4xl text-center animate-fade-in">
+          <div
+            class="p-10 rounded-2xl bg-slate-800/50 border border-white/10 backdrop-blur-lg animate-pulse-glow"
+          >
+            <h2 class="text-3xl md:text-5xl font-bold text-violet-400 mb-4">
+              We Will Build a Myth
+            </h2>
+            <p class="text-lg text-slate-300">
+              Our core creative is the <strong>"Who is Mohan?"</strong> digital
+              campaign, designed to build a mythic identity for the author.
+              Using mystery, story fragments, and fan theories, we will portray
+              him as a transcendent literary icon.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border"
+      >
+        <div class="w-full max-w-5xl animate-fade-in">
+          <h2
+            class="text-3xl md:text-5xl font-bold text-center text-violet-400 mb-10"
+          >
+            AI-Powered Storytelling
+          </h2>
+          <div class="flex flex-col md:flex-row gap-8">
+            <div
+              class="flex-1 p-6 bg-slate-800/50 border border-white/10 rounded-xl"
+            >
+              <h4 class="font-semibold text-white text-xl mb-2">
+                Surreal Cinematic Clips
+              </h4>
+              <p class="text-slate-300">
+                An AI-generated campaign of short, surreal video clips that
+                evoke the mood of magic realism, not just sell a plot.
+              </p>
+            </div>
+            <div
+              class="flex-1 p-6 bg-slate-800/50 border border-white/10 rounded-xl"
+            >
+              <h4 class="font-semibold text-white text-xl mb-2">
+                Interactive AI Chatbot
+              </h4>
+              <p class="text-slate-300">
+                An exclusive chatbot that lets fans roleplay with literary
+                characters, accessed via QR codes in books and at events.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border"
+      >
+        <div class="w-full max-w-4xl text-center animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold text-violet-400 mb-6">
+            Engaging The Audience Where They Live
+          </h2>
+          <p class="text-lg text-slate-300 leading-relaxed mb-8">
+            We will prioritize TikTok, YouTube Shorts, and Facebook Reels for
+            fast, trend-driven engagement. Our content will recreate dream-like
+            scenes from the books, amplified by paid collaborations with Gen Z
+            influencers and creators.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border bg-gradient-to-bl from-gray-900 to-slate-800"
+      >
+        <div class="w-full max-w-4xl text-center animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold text-violet-400 mb-6">
+            The CIBF 2025 Activation
+          </h2>
+          <p class="text-lg text-slate-300 leading-relaxed">
+            An immersive booth with a surreal soundscape and visuals. Visitors
+            can get limited edition AI-art merchandise and unlock exclusive AR
+            scenes and chatbot content via QR codes.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border"
+      >
+        <div class="w-full max-w-4xl text-center animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold text-violet-400 mb-6">
+            Building the Movement
+          </h2>
+          <p class="text-lg text-slate-300 leading-relaxed">
+            Leading up to the fair, we will partner with cafés and creative hubs
+            for pop-up literary events, including readings, workshops, and
+            unique "AI x Literature" salons to bridge the physical and digital
+            worlds.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border bg-gradient-to-br from-gray-900 to-purple-900/40"
+      >
+        <div class="w-full max-w-4xl animate-fade-in">
+          <h2
+            class="text-3xl md:text-5xl font-bold text-center text-violet-400 mb-10"
+          >
+            Our Path to Launch
+          </h2>
+          <ol class="relative border-l border-gray-700 text-left">
+            <li class="mb-10 ml-4">
+              <div
+                class="absolute w-3 h-3 bg-violet-400 rounded-full mt-1.5 -left-1.5 border border-white"
+              ></div>
+              <h3 class="text-lg font-semibold text-white">Phase 1: TEASE</h3>
+              <p class="text-base font-normal text-slate-400">
+                Launch the "Who is Mohan?" mystery campaign. Host pop-up café
+                events.
+              </p>
+            </li>
+            <li class="mb-10 ml-4">
+              <div
+                class="absolute w-3 h-3 bg-violet-400 rounded-full mt-1.5 -left-1.5 border border-white"
+              ></div>
+              <h3 class="text-lg font-semibold text-white">Phase 2: LAUNCH</h3>
+              <p class="text-base font-normal text-slate-400">
+                Release the AI cinematic clips and activate the chatbot.
+              </p>
+            </li>
+            <li class="mb-10 ml-4">
+              <div
+                class="absolute w-3 h-3 bg-violet-400 rounded-full mt-1.5 -left-1.5 border border-white"
+              ></div>
+              <h3 class="text-lg font-semibold text-white">Phase 3: IMMERSE</h3>
+              <p class="text-base font-normal text-slate-400">
+                Unveil the full CIBF 2025 booth experience.
+              </p>
+            </li>
+            <li class="ml-4">
+              <div
+                class="absolute w-3 h-3 bg-violet-400 rounded-full mt-1.5 -left-1.5 border border-white"
+              ></div>
+              <h3 class="text-lg font-semibold text-white">Phase 4: AMPLIFY</h3>
+              <p class="text-base font-normal text-slate-400">
+                Fuel conversation with influencer content and fan creations.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section
+        class="w-screen h-screen flex justify-center items-center p-8 box-border"
+      >
+        <div class="w-full max-w-4xl text-center animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold text-violet-400 mb-6">
+            Let's Redefine Literary Engagement.
+          </h2>
+          <div class="text-xl text-slate-300 leading-relaxed">
+            <p>Codezela Technologies is ready to lead the way.</p>
+            <p>Contact us to discuss how we can bring this vision to life.</p>
+            <p>Mail: info@codezela.com</p>
+            <p>Phone: 011 485 8899 | 072 733 3577</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // This script adds horizontal scrolling with the mouse wheel.
+      const slider = document.getElementById("slider-container");
+      let currentSlide = 0;
+      const totalSlides = 10;
+      let isThrottled = false;
+
+      function handleScroll(event) {
+        // throttle function to prevent too many scroll events firing at once
+        if (isThrottled) return;
+        isThrottled = true;
+        setTimeout(() => {
+          isThrottled = false;
+        }, 1200); // Wait 1.2s between scrolls
+
+        const scrollDirection = event.deltaY;
+
+        if (scrollDirection > 0) {
+          // Scrolling down/right
+          currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
+        } else {
+          // Scrolling up/left
+          currentSlide = Math.max(0, currentSlide - 1);
+        }
+
+        slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      }
+
+      window.addEventListener("wheel", handleScroll, { passive: true });
+    </script>
+  </body>
+</html>
