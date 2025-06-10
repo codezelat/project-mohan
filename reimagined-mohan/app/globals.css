@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom font families */
+body {
+  font-family: var(--font-inter), sans-serif;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.font-space {
+  font-family: var(--font-space), sans-serif;
+}
+
+/* Glass morphism effect */
+@layer components {
+  .glass {
+    @apply bg-slate-800/10 backdrop-blur-2xl border border-white/10;
+  }
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-2xl border border-white/10;
+  }
+}
+
+/* Custom gradient backgrounds */
+.bg-cosmic {
+  background: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    #1a1a3e 25%,
+    #2d1b4e 50%,
+    #4c1d95 75%,
+    #6b21a8 100%
+  );
+}
+
+.bg-ethereal {
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e293b 30%,
+    #334155 60%,
+    #475569 100%
+  );
+}
+
+/* Shimmer text effect */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 4s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Glow animation for cards */
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.3),
+      0 0 60px rgba(139, 92, 246, 0.1),
+      inset 0 0 20px rgba(139, 92, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(139, 92, 246, 0.6),
+      0 0 100px rgba(139, 92, 246, 0.2),
+      inset 0 0 30px rgba(139, 92, 246, 0.2);
+  }
+}
+
+.animate-glow {
+  animation: glow 3s infinite ease-in-out;
+}
+
+/* Float animation for hero title */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+.animate-float {
+    animation: float 6s infinite ease-in-out;
+}
